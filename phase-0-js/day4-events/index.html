@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>路面状況投稿</title>
+</head>
+<body>
+  <h1>路面状況を報告する</h1>
+  <form id="report-form">
+    <input type="text" id="location-input" placeholder="場所（例：国道1号）" required>
+    <select id="condition-select">
+      <option value="良好">良好</option>
+      <option value="悪化">悪化</option>
+      <option value="危険">危険</option>
+    </select>
+    <button type="submit">報告する</button>
+  </form>
+  <ul id="report-list"></ul>
+  <script src="script.js"></script>
+</body>
+</html>
