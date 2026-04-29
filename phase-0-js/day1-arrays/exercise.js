@@ -37,7 +37,7 @@ console.log("今日の報告:", todayReports?.length ?? "未完成", "件"); // 
 
 // Q2: 全報告の id を配列にする（map を使う）
 const ids = null; // TODO: map を使ったコードに書き換える
-console.log("ID一覧:", ids); // 期待: [1, 2, 3, 4]
+console.log("ID一覧（期待: [1, 2, 3, 4]）:", ids ?? "未完成");
 
 // Q3: condition が "良好" の件数を数える（filter + .length を使う）
 const goodCount = null; // TODO: filter + .length を使ったコードに書き換える
