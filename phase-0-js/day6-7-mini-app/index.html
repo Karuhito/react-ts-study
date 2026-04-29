@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>路面状況報告アプリ</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
+    .danger { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>路面状況報告</h1>
+  <form id="report-form">
+    <input type="text" id="location-input" placeholder="場所" required>
+    <select id="condition-select">
+      <option value="良好">良好</option>
+      <option value="悪化">悪化</option>
+      <option value="危険">危険</option>
+    </select>
+    <button type="submit">報告する</button>
+  </form>
+  <label>
+    <input type="checkbox" id="danger-filter"> 危険のみ表示
+  </label>
+  <div id="report-list"></div>
+  <script src="script.js"></script>
+</body>
+</html>
