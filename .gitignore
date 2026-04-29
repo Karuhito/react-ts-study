@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Node.js
+node_modules/
+
+# TypeScript ビルド成果物
+dist/
+*.js.map
+
+# Vite
+*.local
