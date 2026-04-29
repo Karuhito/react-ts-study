@@ -36,7 +36,7 @@ console.log(allReports.length); // 3
 // ===== 練習問題（自分で書いてみよう）=====
 
 // Q1: report の condition を "危険" に更新した新しいオブジェクトを作る（スプレッドを使う）
-const dangerReport = { ...report, condition: "危険" };
+const dangerReport = null; // TODO: { ...report, condition: "危険" } のように書く
 console.log("Q1 dangerReport.condition（期待: 危険）:", dangerReport?.condition ?? "未完成");
 console.log("Q1 report.condition（期待: 悪化・元は変わらない）:", report.condition);
 
@@ -45,6 +45,4 @@ console.log("Q1 report.condition（期待: 悪化・元は変わらない）:", 
 // 国道1号: 良好
 // 国道2号: 危険
 console.log("Q2（↓期待: 国道1号: 良好 / 国道2号: 危険）:");
-reports.forEach(({ location, condition }) => {
-  console.log(`${location}: ${condition}`);
-});
+// TODO: reports.forEach(({ ??? }) => { console.log(...) }) のように書く
