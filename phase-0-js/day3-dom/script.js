@@ -21,11 +21,14 @@ reports.forEach((report) => {
 // ===== 練習問題（自分で書いてみよう）=====
 
 // Q1: condition が "危険" の報告だけ #danger-list に表示する
+// 写経パートの listEl へのリスト表示を参考にして書いてみよう
+// 期待: "国道2号: 危険" が danger-list に表示される
 const dangerListEl = document.querySelector("#danger-list");
+// TODO: filter で危険な報告を絞り込み、forEach で li を作って dangerListEl に追加する
 const dangerReports = reports.filter((report) => report.condition === "危険");
 dangerReports.forEach((report) => {
   const li = document.createElement("li");
   li.textContent = `${report.location}: ${report.condition}`;
   dangerListEl.appendChild(li);
 });
-// 期待: "国道2号: 危険" が danger-list に表示される
+
