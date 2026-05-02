@@ -18,8 +18,9 @@ function renderList(filterDanger) {
   listEl.innerHTML = ""; // 一旦クリア
 
   // TODO: ①表示するデータを決める（filterDanger が true のときは危険のみ）
+  // ヒント: filterDanger ? reports.filter(...) : reports
   const displayReports = filterDanger
-    ? reports.filter((report) => report.condition === "危険")
+    ? reports.filter((r) => r.condition === "危険")
     : reports;
 
   // TODO: ②displayReports を forEach でループして li 要素を作り listEl に追加する
@@ -27,13 +28,8 @@ function renderList(filterDanger) {
   //       削除ボタンを押したら reports から該当の id を除外して renderList を呼ぶ
   //       condition === "危険" の場合は li.classList.add("danger") をする
   displayReports.forEach((report) => {
-    const li = document.createElement("div");
-    li.style.padding = "0.5rem";
-    li.style.margin = "0.5rem 0";
-    li.style.border = "1px solid #ccc";
-
-    const textNode = document.createElement("span");
-    textNode.textContent = `${report.location}: ${report.condition}`;
+    const li = document.createElement("li");
+    li.textContent = `${report.location}: ${report.condition}`;
 
     if (report.condition === "危険") {
       li.classList.add("danger");
@@ -41,13 +37,10 @@ function renderList(filterDanger) {
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "削除";
-    deleteBtn.style.marginLeft = "1rem";
     deleteBtn.addEventListener("click", () => {
       reports = reports.filter((r) => r.id !== report.id);
-      renderList(document.querySelector("#danger-filter").checked);
+      renderList(dangerFilter.checked);
     });
-
-    li.appendChild(textNode);
     li.appendChild(deleteBtn);
     listEl.appendChild(li);
   });
@@ -63,15 +56,9 @@ form.addEventListener("submit", (event) => {
   // nextId を id として使い、追加後は nextId++ する
   const location = document.querySelector("#location-input").value;
   const condition = document.querySelector("#condition-select").value;
-
-  reports.push({
-    id: nextId,
-    location,
-    condition,
-  });
+  reports.push({ id: nextId, location, condition});
   nextId++;
-
-  renderList(document.querySelector("#danger-filter").checked);
+  renderList(dangerFilter.checked);
   form.reset();
 });
 
@@ -80,6 +67,7 @@ const dangerFilter = document.querySelector("#danger-filter");
 dangerFilter.addEventListener("change", () => {
   // TODO: dangerFilter.checked を使って renderList を呼ぶ
   renderList(dangerFilter.checked);
+
 });
 
 // ----- 初期表示 -----

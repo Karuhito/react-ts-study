@@ -1,17 +1,18 @@
 // ===== 写経パート（まずこのコードを読んで理解しよう）=====
 
 const reports = [];
-const form = document.querySelector("#report-form");
-const listEl = document.querySelector("#report-list");
+const form = document.querySelector("#report-form"); // id="report-form"のDOM
+const listEl = document.querySelector("#report-list"); // id="report-list"のDOM
+
 
 function renderList() {
-  listEl.innerHTML = "";
+  listEl.innerHTML = ""; 
   reports.forEach((report, index) => {
-    const li = document.createElement("li");
-    li.textContent = `${report.location}: ${report.condition}`;
+    const li = document.createElement("li"); // liタグのDOMを作成
+    li.textContent = `${report.location}: ${report.condition}`; // liタグに中身を入れる
 
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "削除";
+    const deleteBtn = document.createElement("button"); // 削除ボタンのDOMを作成
+    deleteBtn.textContent = "削除"; // ボタンのテキストを入れる
     deleteBtn.addEventListener("click", () => {
       reports.splice(index, 1);
       renderList();
@@ -27,7 +28,7 @@ form.addEventListener("submit", (event) => {
   const location = document.querySelector("#location-input").value;
   const condition = document.querySelector("#condition-select").value;
   reports.push({ id: reports.length + 1, location, condition });
-  renderList();
+  renderList(); //全件再描画
   form.reset();
 });
 
