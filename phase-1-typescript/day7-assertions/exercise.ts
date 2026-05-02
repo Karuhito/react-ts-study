@@ -38,3 +38,5 @@ async function fetchReport(id: number): Promise<RoadReport> {
 // any と unknown の違いを説明できるようにしよう:
 // - any: 型チェックを完全に無効にする（危険）
 // - unknown: 型がわからないことを示す。使う前に typeof などで型を絞り込む必要がある（安全）
+
+export {};

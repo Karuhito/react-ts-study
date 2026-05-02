@@ -53,3 +53,5 @@ console.log(first?.location); // "国道1号"
 // この型を使って RoadReport のページネーション結果を定義する
 // TODO: const paginatedReports: PaginatedResponse<RoadReport> = { ... }
 // 期待: data に2件、total: 2、page: 1、perPage: 10
+
+export {};

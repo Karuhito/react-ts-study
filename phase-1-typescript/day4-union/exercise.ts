@@ -50,3 +50,5 @@ console.log(getPhotoUrl(report2)); // "https://..."
 // Q2: VerifiedReport interface を定義する
 // 必要なプロパティ: id（number）, location（string）, status（ReportStatus）, verifiedBy（string、任意）
 // TODO: interface VerifiedReport { ... }
+
+export {};

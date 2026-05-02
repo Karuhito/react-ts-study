@@ -52,3 +52,5 @@ function addReport(reports: RoadReport[], newReport: Omit<RoadReport, "id">): Ro
 function findById(reports: RoadReport[], id: number): /* TODO: RoadReport | ??? */ {
   return reports.find((r) => r.id === id);
 }
+
+export {};

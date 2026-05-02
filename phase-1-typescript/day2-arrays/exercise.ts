@@ -30,3 +30,5 @@ const reportDates: /* ??? */ = ["2026-04-29", "2026-04-28"];
 // 期待: [["国道1号", "良好"], ["国道2号", "危険"]] のような構造
 const reportTuples: [string, string][] = /* TODO: ここに値を入れる */;
 console.log("Q2 reportTuples:", reportTuples);
+
+export {};

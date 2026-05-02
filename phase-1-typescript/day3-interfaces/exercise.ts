@@ -49,3 +49,5 @@ console.log(summary);
 // Q2: DetailedReport interface を定義する
 // RoadReport の全プロパティ + reporter: Reporter を持つ interface
 // TODO: interface DetailedReport { ... } を書く
+
+export {};

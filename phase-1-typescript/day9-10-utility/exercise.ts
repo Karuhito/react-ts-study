@@ -48,3 +48,5 @@ console.log(newReport);
 
 // Q3: 全プロパティが readonly な型を作る（Readonly を使う）
 // TODO: type FrozenReport = ...
+
+export {};
