@@ -45,12 +45,32 @@ reports.forEach(logReport);
 // ヒント: Omit<RoadReport, "id"> は「id を除いた RoadReport の型」という意味
 function addReport(reports: RoadReport[], newReport: Omit<RoadReport, "id">): RoadReport[] {
   // TODO: スプレッド構文で新しい配列を返す。id は reports.length + 1 にする
+  return [
+    ...reports, // 既存の報告をそのまま展開
+    { id: reports.length + 1, ...newReport } // 新しい報告  
+  ]
+  
 }
 
 // Q2: 戻り値の型を補完する
 // ヒント: find() は見つからないとき undefined を返す
-function findById(reports: RoadReport[], id: number): /* TODO: RoadReport | ??? */ {
+function findById(reports: RoadReport[], id: number): RoadReport | undefined {
   return reports.find((r) => r.id === id);
 }
+
+const updated = addReport(reports, {
+  location: "国道4号",
+  condition: "悪化",
+  reportedAt: "2026-05-03",
+});
+console.log(updated);
+console.log(updated.length);
+
+const oldReportId = findById(reports, 4); // 古い配列を引数にしていてid 4が存在しないのでundefinedが帰ってくる
+const newReportId = findById(updated, 4); // 新しい配列を引数にしているからid4のreportが帰ってくる
+
+
+console.log(oldReportId);
+console.log(newReportId);
 
 export {};
