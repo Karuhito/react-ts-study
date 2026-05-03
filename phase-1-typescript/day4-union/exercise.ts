@@ -46,9 +46,23 @@ console.log(getPhotoUrl(report2)); // "https://..."
 // Q1: ReportStatus 型を定義する
 // 許可する値: "pending" | "verified" | "rejected"
 // TODO: type ReportStatus = ...
+type ReportStatus = "pending" | "verified" | "rejected";
+
 
 // Q2: VerifiedReport interface を定義する
 // 必要なプロパティ: id（number）, location（string）, status（ReportStatus）, verifiedBy（string、任意）
 // TODO: interface VerifiedReport { ... }
-
+interface VerifiedReport {
+  id: number;
+  location: string;
+  status: ReportStatus;
+  verifiedBy?: string;
+};
+const myReport: VerifiedReport = {
+  id: 1,
+  location: "国道1号",
+  status: "pending",
+};
+console.log(myReport);
+console.log(myReport.status);
 export {};

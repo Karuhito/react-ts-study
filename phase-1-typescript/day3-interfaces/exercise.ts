@@ -59,4 +59,18 @@ interface DetailedReport extends RoadReport {
   reporter: Reporter;
 }
 
+const detailedReport: DetailedReport = {
+  id: 1,
+  location: "国道1号",
+  condition: "危険",
+  coordinates: { lat: 35.6895, lng: 139.6917 },
+  reportedAt: "2026-05-03",
+  reporterName: "田中太郎",
+  reporter: {
+    id: 101,
+    name: "田中太郎",
+    email: "tanaka@email.com",
+  },
+};
+console.log(detailedReport);
 export {};
