@@ -45,9 +45,18 @@ console.log(summary);
 // Q1: Reporter interface を定義する
 // 必要なプロパティ: id（number）, name（string）, email（string）
 // TODO: interface Reporter { ... } を書く
+interface Reporter {
+  id: number;
+  name: string;
+  email: string;
+
+}
 
 // Q2: DetailedReport interface を定義する
 // RoadReport の全プロパティ + reporter: Reporter を持つ interface
 // TODO: interface DetailedReport { ... } を書く
+interface DetailedReport extends RoadReport {
+  reporter: Reporter;
+}
 
 export {};
