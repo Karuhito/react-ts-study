@@ -1,5 +1,8 @@
-import type { RoadReport } from "./types";
+import { useState } from "react";
+import type { RoadReport, CreateReportInput } from "./types";
 import { ReportCard } from "./components/ReportCard";
+import { ReportForm } from "./components/ReportFoem";
+
 
 const INITIAL_REPORTS: RoadReport[] = [
   {id: 1, location: "国道1号", condition: "良好", reportedAt: "2026-05-04" },
@@ -9,13 +12,24 @@ const INITIAL_REPORTS: RoadReport[] = [
 
 
 function App() {
-  return(
+  const [reports, setReports ] = useState<RoadReport[]>(INITIAL_REPORTS);
+  
+  function handleAddReport(input: CreateReportInput) {
+    const newReport: RoadReport = {
+      id: reports.length + 1,
+      reportedAt: new Date().toISOString().split("T")[0],
+      ...input,
+    };
+    setReports([...reports, newReport]);
+  }
+  
+  return (
     <div>
       <h1>路面状況報告アプリ</h1>
-      <p>報告件数: {INITIAL_REPORTS.length}件</p>
+      <ReportForm onSubmit={handleAddReport} />
       <ul>
-        {INITIAL_REPORTS.map((report) => (
-           <ReportCard key={report.id} report={report} />
+        {reports.map((report) => (
+          <ReportCard key={report.id} report={report} />
         ))}
       </ul>
     </div>
