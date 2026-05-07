@@ -1,34 +1,11 @@
-import { useState, useEffect } from "react";
-import type { RoadReport, CreateReportInput } from "./types";
-import { fetchReports } from "./api/mockApi";
+import { useState } from "react";
+import { useReports } from "./hooks/useReports";
 import { ReportCard } from "./components/ReportCard";
 import { ReportForm } from "./components/ReportForm";
 
-
 function App() {
-  const [reports, setReports] = useState<RoadReport[]>([]);
-  const [filterDanger, setFilterDanger] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetchReports().then((data) => {
-      setReports(data);
-      setIsLoading(false);
-    });
-  }, []);
-
-  function handleAddReport(input: CreateReportInput) {
-    const newReport: RoadReport = {
-      id: reports.length + 1,
-      reportedAt: new Date().toISOString().split("T")[0],
-      ...input,
-    };
-    setReports([...reports, newReport]);
-  }
-
-  function handleDeleteReport(id: number) {
-    setReports(reports.filter((r) => r.id !== id));
-  }
+  const { reports, isLoading, addReport, deleteReport } = useReports();
+  const [ filterDanger, setFilterDanger ] = useState(false);
 
   const displayReports = filterDanger
     ? reports.filter((r) => r.condition === "危険")
@@ -37,9 +14,9 @@ function App() {
   return (
     <div>
       <h1>路面状況報告アプリ</h1>
-      <ReportForm onSubmit={handleAddReport} />
+      <ReportForm onSubmit={addReport} />
       <label>
-        <input
+        <input 
           type="checkbox"
           checked={filterDanger}
           onChange={(e) => setFilterDanger(e.target.checked)}
@@ -54,7 +31,7 @@ function App() {
             <ReportCard
               key={report.id}
               report={report}
-              onDelete={handleDeleteReport}
+              onDelete={deleteReport}
             />
           ))}
         </ul>
