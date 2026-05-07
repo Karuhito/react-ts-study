@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { RoadReport, CreateReportInput } from "./types";
+import { fetchReports } from "./api/mockApi";
 import { ReportCard } from "./components/ReportCard";
 import { ReportForm } from "./components/ReportForm";
 
-const INITIAL_REPORTS: RoadReport[] = [
-  { id: 1, location: "国道1号", condition: "良好", reportedAt: "2026-05-04" },
-  { id: 2, location: "国道2号", condition: "危険", reportedAt: "2026-05-04" },
-  { id: 3, location: "国道3号", condition: "悪化", reportedAt: "2026-05-04" },
-];
 
 function App() {
-  const [reports, setReports] = useState<RoadReport[]>(INITIAL_REPORTS);
-  const [filterDanger, setFilterDanger ] = useState(false);
+  const [reports, setReports] = useState<RoadReport[]>([]);
+  const [filterDanger, setFilterDanger] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchReports().then((data) => {
+      setReports(data);
+      setIsLoading(false);
+    });
+  }, []);
 
   function handleAddReport(input: CreateReportInput) {
     const newReport: RoadReport = {
@@ -42,15 +46,19 @@ function App() {
         />
         危険のみ表示
       </label>
-      <ul>
-        {displayReports.map((report) => (
-          <ReportCard
-            key={report.id}
-            report={report}
-            onDelete={handleDeleteReport}
-          />
-        ))}
-      </ul>
+      {isLoading ? (
+        <p>読み込み中...</p>
+      ) : (
+        <ul>
+          {displayReports.map((report) => (
+            <ReportCard
+              key={report.id}
+              report={report}
+              onDelete={handleDeleteReport}
+            />
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
