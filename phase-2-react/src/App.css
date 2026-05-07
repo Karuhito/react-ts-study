@@ -1,1 +1,17 @@
+.app {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: sans-serif;
+}
 
+.filter-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+button {
+  margin-left: 0.5rem;
+}

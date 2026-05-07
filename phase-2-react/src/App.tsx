@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useReports } from "./hooks/useReports";
-import { ReportCard } from "./components/ReportCard";
 import { ReportForm } from "./components/ReportForm";
+import { ReportList } from "./components/ReportList";
+import "./App.css";
+
+
 
 function App() {
   const { reports, isLoading, addReport, deleteReport } = useReports();
@@ -12,10 +15,10 @@ function App() {
     : reports;
 
   return (
-    <div>
+    <div className="app">
       <h1>路面状況報告アプリ</h1>
       <ReportForm onSubmit={addReport} />
-      <label>
+      <label className="filter-label">
         <input 
           type="checkbox"
           checked={filterDanger}
@@ -23,19 +26,12 @@ function App() {
         />
         危険のみ表示
       </label>
-      {isLoading ? (
-        <p>読み込み中...</p>
-      ) : (
-        <ul>
-          {displayReports.map((report) => (
-            <ReportCard
-              key={report.id}
-              report={report}
-              onDelete={deleteReport}
-            />
-          ))}
-        </ul>
-      )}
+      <p>{reports.length}件の表示</p>
+      <ReportList
+        reports={displayReports}
+        isLoading={isLoading}
+        onDelete={deleteReport}
+      />
     </div>
   );
 }
